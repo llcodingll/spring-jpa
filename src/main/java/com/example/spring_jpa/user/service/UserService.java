@@ -1,5 +1,18 @@
 package com.example.spring_jpa.user.service;
 
-public interface UserService {
+import com.example.spring_jpa.user.request.UserRequest;
+import com.example.spring_jpa.user.response.UserResponse;
 
+import java.util.List;
+
+public interface UserService {
+    UserResponse createUser(UserRequest request);
+
+    UserResponse updateUser(Long id, UserRequest request);
+
+    void deleteUserById(Long id);
+
+    UserResponse getUserById(Long id);
+
+    List<UserResponse> getAllUsers();
 }
