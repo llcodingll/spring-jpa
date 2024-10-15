@@ -1,9 +1,12 @@
 package com.example.spring_jpa.user.domain;
 
+import com.example.spring_jpa.store.domain.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Table(
@@ -30,5 +33,8 @@ public class User {
 
     @Column(length = 30, nullable = false)
     private String username;
+
+    @OneToMany(mappedBy = "user")
+    private List<Store> store;
 
 }
