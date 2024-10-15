@@ -21,12 +21,15 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserResponse createUser(UserRequest request) {
-        return null;
+        User save = userRepository.save(request.toEntity());
+        return UserResponse.from(save);
     }
 
     @Override
     public UserResponse updateUser(Long id, UserRequest request) {
-        return null;
+        User user = userRepository.findById(id).orElseThrow();
+        user.update(request);
+        return UserResponse.from(userRepository.save(user));
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.example.spring_jpa.user.domain;
 
+import ch.qos.logback.core.util.StringUtil;
 import com.example.spring_jpa.store.domain.Store;
+import com.example.spring_jpa.user.request.UserRequest;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,4 +43,11 @@ public class User {
     @Builder.Default
     private List<Store> stores = new ArrayList<>();
 
+    public void update(UserRequest request) {
+        if(StringUtil.isNullOrEmpty(request.password()))
+            this.password = request.password();
+        if (!StringUtil.notNullNorEmpty(request.username())) {
+            this.username = request.username();
+        }
+    }
 }

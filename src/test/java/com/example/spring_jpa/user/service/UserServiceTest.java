@@ -19,11 +19,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 public class UserServiceTest {
+
     @Test
     void createUser() {
+        UserRequest request = new UserRequest("f", "f", "f");
 
-        UserResponse createUser = userService.createUser(new UserRequest("email", "password", "username"));
+        UserResponse user = userService.createUser(request);
 
+        assertEquals(request.email(), user.email());
+        assertNotNull(user.id());
+    }
+
+    @Test
+    void updateUser() {
+        User user = users.get(0);
+        UserRequest request = new UserRequest(user.getEmail()+"www", user.getPassword()+"123", user.getUsername()+"fff");
+        UserResponse response = userService.updateUser(user.getId(), request);
+
+        assertNotNull(response);
+        User after = userRepository.findById(user.getId()).get();
+        assertEquals(request.password(), after.getPassword());
+        assertEquals(request.username(), after.getUsername());
+        assertNotEquals(request.email(), after.getEmail()); //email은 pk니까 변경되면 안돼
+        assertEquals(user.getEmail(), response.email()); //위에 거 말고 이거랑 같을 거다
+    }
+
+    @Test
+    void deleteUserById() {
+        userService.deleteUserById(1L);
+
+        assertFalse(userRepository.findById(1L).isPresent());
     }
 
     @Nested
@@ -61,7 +86,6 @@ public class UserServiceTest {
     }
 
 
-
     String email = "www@gmail.com";
     String password = "1234";
     String username = "admin";
@@ -76,9 +100,9 @@ public class UserServiceTest {
         users = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             User user = User.builder()
-                    .email(email+i)
+                    .email(email + i)
                     .password(password)
-                    .username(username+i)
+                    .username(username + i)
                     .build();
             users.add(user);
         }
