@@ -3,9 +3,11 @@ package com.example.spring_jpa.user.domain;
 import com.example.spring_jpa.store.domain.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +21,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class User {
     @Id
     @Column(name = "USER_ID")
@@ -35,6 +38,7 @@ public class User {
     private String username;
 
     @OneToMany(mappedBy = "user")
-    private List<Store> store;
+    @Builder.Default
+    private List<Store> stores = new ArrayList<>();
 
 }

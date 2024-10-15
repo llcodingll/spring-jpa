@@ -29,6 +29,6 @@ public class Store {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    @OneToMany(mappedBy = "STORE_ID")
+    @OneToMany(mappedBy = "store")
     private List<Order> orders;
 }
