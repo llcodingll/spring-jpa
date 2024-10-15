@@ -1,6 +1,9 @@
 package com.example.spring_jpa.user.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(
@@ -10,17 +13,22 @@ import jakarta.persistence.*;
                 @Index(columnList = "username")
         }
 )
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "USER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(length = 30, nullable = false)
     private String username;
 
 }
