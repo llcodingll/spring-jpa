@@ -44,9 +44,9 @@ public class User {
     private List<Store> stores = new ArrayList<>();
 
     public void update(UserRequest request) {
-        if(StringUtil.isNullOrEmpty(request.password()))
+        if(!StringUtil.isNullOrEmpty(request.password()))
             this.password = request.password();
-        if (!StringUtil.notNullNorEmpty(request.username())) {
+        if (!StringUtil.isNullOrEmpty(request.username())) {
             this.username = request.username();
         }
     }

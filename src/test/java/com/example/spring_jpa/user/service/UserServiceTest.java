@@ -34,6 +34,7 @@ public class UserServiceTest {
     void updateUser() {
         User user = users.get(0);
         UserRequest request = new UserRequest(user.getEmail()+"www", user.getPassword()+"123", user.getUsername()+"fff");
+
         UserResponse response = userService.updateUser(user.getId(), request);
 
         assertNotNull(response);
