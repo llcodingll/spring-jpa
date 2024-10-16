@@ -15,10 +15,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StoreController {
     private final StoreService storeService;
+
     @GetMapping("/api/v1/stores")
     public List<StoreResponse> getAllStores(){
         return storeService.getAllStore();
     }
+
     @PostMapping("/api/v1/stores")
     public StoreResponse saveStore(
             @RequestBody StoreRequest request

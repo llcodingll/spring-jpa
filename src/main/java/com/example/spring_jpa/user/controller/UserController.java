@@ -19,10 +19,14 @@ public class UserController {
     ){
         return userService.createUser(request);
     }
+
     @GetMapping("/api/v1/users")
     public List<UserResponse> getAll(){
         return userService.getAllUsers();
     }
 
-
+    @GetMapping
+    public void test() {
+        return;
+    }
 }

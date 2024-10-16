@@ -1,5 +1,6 @@
 package com.example.spring_jpa.order.domain;
 
+import com.example.spring_jpa.config.BaseEntity;
 import com.example.spring_jpa.store.domain.Store;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Order {
+public class Order extends BaseEntity {
     @Id
     @Column(name = "ORDER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

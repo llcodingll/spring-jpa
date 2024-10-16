@@ -1,5 +1,6 @@
 package com.example.spring_jpa.store.domain;
 
+import com.example.spring_jpa.config.BaseEntity;
 import com.example.spring_jpa.order.domain.Order;
 import com.example.spring_jpa.user.domain.User;
 import jakarta.persistence.*;
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Store {
+public class Store extends BaseEntity {
     @Id
     @Column(name = "STORE_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
