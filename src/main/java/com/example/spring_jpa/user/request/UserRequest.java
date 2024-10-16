@@ -7,7 +7,7 @@ public record UserRequest(
         String password,
         String username
 ) {
-    public User toEntity() {
+    public User toEntity(){
         return User.builder()
                 .email(email)
                 .password(password)
