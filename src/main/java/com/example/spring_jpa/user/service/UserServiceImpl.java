@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,10 +55,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserResponse> pageUsers(PageRequest request) {
+    public Page<UserResponse> pageUsers(Pageable request) {
         return userRepository.findAll(request)
                 .map(UserResponse::from);
     }
+
+//    @Override
+//    public Page<UserResponse> pageUsers(PageRequest request) {
+//        return userRepository.findAll(request)
+//                .map(UserResponse::from);
+//    }
 
 
 }
