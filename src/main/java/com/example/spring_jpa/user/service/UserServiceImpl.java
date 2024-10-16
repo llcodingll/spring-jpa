@@ -6,6 +6,8 @@ import com.example.spring_jpa.user.request.UserRequest;
 import com.example.spring_jpa.user.response.UserResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,6 +51,12 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(UserResponse::from)
                 .toList();
+    }
+
+    @Override
+    public Page<UserResponse> pageUsers(PageRequest request) {
+        return userRepository.findAll(request)
+                .map(UserResponse::from);
     }
 
 
